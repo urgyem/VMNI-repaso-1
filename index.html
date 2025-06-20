@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventilación Mecánica No Invasiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* BRAND COLORS:
+        Primary: #be1520 (Red), #074d73 (Dark Blue), white
+        Secondary: black, yellow (for accents/highlights)
+        */
+
+        /* General Reset & Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #074d73 0%, #1a334d 100%); /* Dark Blue gradient for body */
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Container & Header */
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.4); /* Darker header background for contrast */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15); /* Lighter, more transparent background */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #be1520; /* Primary red on hover/active */
+            border-color: #be1520;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Slides */
+        .slide {
+            background: white; /* White background for content */
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            display: none;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide h2 {
+            color: #074d73; /* Dark Blue for H2 */
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 4px solid #074d73; /* Dark Blue border */
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .slide h3 {
+            color: #be1520; /* Primary Red for H3 */
+            font-size: 1.8rem;
+            margin: 30px 0 20px 0;
+            border-left: 6px solid #be1520; /* Primary Red border */
+            padding-left: 20px;
+            font-weight: 600;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: #f8f8f8; /* Very light grey for info cards */
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 6px solid #074d73; /* Dark Blue prominent border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-card h4 {
+            color: #074d73; /* Dark Blue for H4 in info cards */
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Criteria Lists & Contraindications */
+        .criteria-list {
+            background: #e6f2f8; /* Light blue background */
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .criteria-list h4 {
+            color: #074d73; /* Dark Blue for H4 in lists */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .criteria-list h5 {
+            color: #be1520; /* Red for sub-criteria headers */
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .criteria-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .criteria-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .criteria-list li:last-child {
+            border-bottom: none;
+        }
+
+        .criteria-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #32CD32; /* Green for checkmark (can be yellow if preferred) */
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contraindications {
+            background: #ffe6e6; /* Very light red background */
+            border-left: 6px solid #be1520; /* Primary Red border */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .contraindications h4 {
+            color: #be1520; /* Primary Red for contraindications */
+        }
+
+        .contraindications li:before {
+            content: "✗";
+            color: #be1520; /* Primary Red for crossmark */
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid #eee;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+        }
+
+        th {
+            background: linear-gradient(135deg, #074d73 0%, #053b5a 100%); /* Dark Blue gradient for table headers */
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        th:first-child {
+            border-top-left-radius: 15px;
+        }
+
+        th:last-child {
+            border-top-right-radius: 15px;
+        }
+
+        td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background: #fdfdfd; /* Lighter alternating row color */
+        }
+
+        tr:hover {
+            background: #f0f8ff; /* Very light blue hover effect */
+        }
+
+        /* Protocol Steps */
+        .protocol-steps {
+            background: linear-gradient(135deg, #be1520 0%, #a3121a 100%); /* Primary Red gradient */
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .protocol-steps h3 {
+            color: white;
+            border-left: 6px solid white;
+            font-size: 2rem;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.15);
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .step h4 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .step p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Advantages/Disadvantages & Highlight Box */
+        .advantages-disadvantages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .advantages {
+            background: linear-gradient(135deg, #074d73 0%, #053b5a 100%); /* Dark Blue gradient for advantages */
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .disadvantages {
+            background: linear-gradient(135deg, #be1520 0%, #a3121a 100%); /* Primary Red gradient for disadvantages */
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .advantages h3, .disadvantages h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .advantages ul, .disadvantages ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .advantages li, .disadvantages li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .advantages li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #FFD700; /* Yellow for checkmark */
+            font-weight: bold;
+        }
+
+        .disadvantages li:before {
+            content: "●"; /* Use a simple circle for applications, not cross */
+            position: absolute;
+            left: 0;
+            color: #FFD700; /* Yellow for bullet */
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #be1520 0%, #a3121a 100%); /* Primary Red gradient */
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border: none;
+            padding-left: 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .highlight-box ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: left;
+            margin-top: 20px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .highlight-box ul li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .highlight-box ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #FFD700; /* Yellow for bullet */
+            font-weight: bold;
+        }
+
+        /* Disease Categories */
+        .disease-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .disease-card {
+            background: linear-gradient(135deg, #074d73 0%, #053b5a 100%); /* Dark Blue gradient */
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .disease-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .disease-card h4 {
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .disease-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .disease-card ul li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* Parameters Grid */
+        .parameters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .parameter-card {
+            background: #f0f8ff; /* Very light blue background */
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #074d73; /* Dark Blue border */
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .parameter-card h4 {
+            color: #074d73; /* Dark Blue */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .parameter-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #be1520; /* Primary Red for value */
+            margin-bottom: 10px;
+        }
+
+        .parameter-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 25px;
+            opacity: 0.9;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.4); /* Dark background */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer a {
+            color: #FFD700; /* Yellow for link */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #be1520, #FFD700); /* Red to Yellow gradient for progress */
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .slide {
+                padding: 25px;
+            }
+
+            .slide h2 {
+                font-size: 2.2rem;
+            }
+
+            .slide h3 {
+                font-size: 1.5rem;
+            }
+
+            .advantages-disadvantages {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .parameters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .disease-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .highlight-box ul {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .slide {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .slide h2 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .slide h3 {
+                font-size: 1.3rem;
+                margin: 20px 0 10px 0;
+            }
+
+            .info-card, .criteria-list, .advantages, .disadvantages, .protocol-steps, .highlight-box, .disease-card, .parameter-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header">
+            <h1>Ventilación Mecánica No Invasiva (VMNI)</h1>
+            <p>Repaso de documento 1 de estudio</p>
+        </div>
+
+        <nav class="navigation">
+            <button class="nav-btn active" data-slide-id="intro">Introducción</button>
+            <button class="nav-btn" data-slide-id="agudos">VMNI Agudos</button>
+            <button class="nav-btn" data-slide-id="indicaciones">Indicaciones</button>
+            <button class="nav-btn" data-slide-id="tecnica">Aspectos técnicos</button>
+            <button class="nav-btn" data-slide-id="protocolo">Protocolo</button>
+            <button class="nav-btn" data-slide-id="monitoreo">Monitorización</button>
+            <button class="nav-btn" data-slide-id="cronicos">VNI crónicos</button>
+            <button class="nav-btn" data-slide-id="domiciliaria">VMD</button>
+            <button class="nav-btn" data-slide-id="patologias">Patologías</button>
+            <button class="nav-btn" data-slide-id="complicaciones">Complicaciones</button>
+        </nav>
+
+        <div class="slide active" id="intro">
+            <h2>¿Qué es la ventilación no invasiva?</h2>
+
+            <div class="highlight-box">
+                <h3>Definición</h3>
+                <p>La VMNI incluye cualquier forma de soporte ventilatorio sin necesidad de intubación endotraqueal</p>
+            </div>
+
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h3>Ventajas de la VMNI</h3>
+                    <ul>
+                        <li>Evita intubación y complicaciones</li>
+                        <li>Mayor comodidad para el paciente</li>
+                        <li>No requiere sedación profunda</li>
+                        <li>Preserva mecanismos de defensa</li>
+                        <li>Reduce morbimortalidad</li>
+                        <li>Menor estancia hospitalaria</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h3>Aplicaciones principales</h3>
+                    <ul>
+                        <li>Insuficiencia respiratoria aguda</li>
+                        <li>Agudizaciones de EPOC</li>
+                        <li>Edema pulmonar cardiogénico</li>
+                        <li>Insuficiencia respiratoria crónica</li>
+                        <li>Enfermedades neuromusculares</li>
+                        <li>Soporte paliativo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="agudos">
+            <h2>VMNI en pacientes agudos</h2>
+
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Agudización de EPOC</h4>
+                    <p><strong>Evidencia más fuerte:</strong> mejora disnea, gasometría, reduce intubación y mortalidad</p>
+                    <p><strong>Indicación:</strong> pH < 7,35 con hipercapnia</p>
+                    <p><strong>Inicio:</strong> precoz antes de acidosis grave</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Edema de pulmón cardiogénico</h4>
+                    <p><strong>Modalidades:</strong> CPAP o VNI con presión de soporte</p>
+                    <p><strong>Beneficios:</strong> mejora intercambio gaseoso, reduce intubación</p>
+                    <p><strong>Nota:</strong> VMNI puede mostrar mejoría más rápida</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Neumonía adquirida</h4>
+                    <p><strong>Controversia:</strong> puede retrasar intubación</p>
+                    <p><strong>Beneficio:</strong> especialmente en pacientes con EPOC</p>
+                    <p><strong>Precaución:</strong> vigilancia estrecha, no demorar ventilación invasiva</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Pacientes Inmunodeprimidos</h4>
+                    <p><strong>Indicación:</strong> trasplantados con insuficiencia respiratoria</p>
+                    <p><strong>Beneficios:</strong> reduce intubación y mortalidad intrahospitalaria</p>
+                    <p><strong>Limitación:</strong> beneficio no establecido en neoplasias hematológicas</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h4>Otras indicaciones</h4>
+                <ul>
+                    <li><strong>Destete post-extubación:</strong> previene reintubación en pacientes de riesgo</li>
+                    <li><strong>Insuficiencia postoperatoria:</strong> mejora tras cirugía abdominal mayor</li>
+                    <li><strong>Traumatismo torácico:</strong> mejora oxigenación, reduce intubación</li>
+                    <li><strong>SOH:</strong> eficaz en agudizaciones con hipercapnia</li>
+                    <li><strong>VNI paliativa:</strong> soporte mientras se resuelve proceso o alivio sintomático</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" id="indicaciones">
+            <h2>Selección de pacientes para VMNI</h2>
+
+            <div class="content-grid">
+                <div class="criteria-list">
+                    <h4>1. Identificar la necesidad de soporte ventilatorio</h4>
+                    <h5>Síntomas y signos:</h5>
+                    <ul>
+                        <li>Disnea moderada-severa</li>
+                        <li>Frecuencia respiratoria > 24</li>
+                        <li>Uso de musculatura accesoria</li>
+                        <li>Respiración paradójica</li>
+                    </ul>
+                    <h5>Alteraciones gasométricas:</h5>
+                    <ul>
+                        <li>PaCO₂ > 45 mmHg; pH < 7,35</li>
+                        <li>PaO₂/FiO₂ < 200</li>
+                    </ul>
+                </div>
+
+                <div class="criteria-list contraindications">
+                    <h4>2. Contraindicaciones absolutas</h4>
+                    <ul>
+                        <li>Parada respiratoria establecida o inminente</li>
+                        <li>Comorbilidad grave inestable</li>
+                        <li>Incapacidad de proteger vía aérea</li>
+                        <li>Obstrucción fija vía aérea superior</li>
+                        <li>Traqueostomía</li>
+                        <li>Rechazo del paciente</li>
+                        <li>Alteraciones anatómicas faciales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="criteria-list">
+                <h4>Contraindicaciones relativas</h4>
+                <ul>
+                    <li>Hemorragia digestiva alta</li>
+                    <li>Cirugía esofágica o gástrica recientes</li>
+                    <li>Secreciones abundantes</li>
+                    <li>Agitación intensa o falta de colaboración</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" id="tecnica">
+            <h2>Aspectos técnicos básicos</h2>
+
+            <h3>Modos ventilatorios</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Presión de soporte (PS)</h4>
+                    <p>Más empleada en insuficiencia respiratoria aguda</p>
+                    <p><strong>Con/sin PEEP:</strong> presión por encima de PEEP</p>
+                    <p><strong>BIPAP:</strong> diferencia entre IPAP y EPAP = PS efectiva</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>CPAP</h4>
+                    <p>No es verdadero modo de ventilación</p>
+                    <p><strong>Función:</strong> presión positiva continua</p>
+                    <p><strong>Mecanismo:</strong> reduce shunt, recluta alvéolos</p>
+                </div>
+            </div>
+
+            <h3>Interfases y mascarillas</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo de mascarilla</th>
+                            <th>Ventajas</th>
+                            <th>Inconvenientes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nasal</strong></td>
+                            <td>Permite hablar/comer, menos claustrofobia</td>
+                            <td>Fugas bucales, menos efectiva en agudos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Oronasal</strong></td>
+                            <td>Mejor control fugas, más efectiva en agudos</td>
+                            <td>Mayor riesgo aspiración, mayor espacio muerto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Facial completa</strong></td>
+                            <td>Menor riesgo lesión cutánea, más cómoda</td>
+                            <td>Mayor espacio muerto, sequedad ocular</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Helmet</strong></td>
+                            <td>Sin lesiones cutáneas, tamaño único</td>
+                            <td>Reinhalación CO₂, asincronías</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Accesorios importantes</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Humidificadores</h4>
+                    <p>Recomendados si VNI > 8-12 horas o secreciones espesas</p>
+                </div>
+                <div class="info-card">
+                    <h4>Filtros</h4>
+                    <p>Antibacterianos de baja resistencia entre respirador y tubuladura</p>
+                </div>
+                <div class="info-card">
+                    <h4>Apósitos protectores</h4>
+                    <p>Hidrocoloides en puente nasal, frente y pómulos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="protocolo">
+            <h2>Protocolo de aplicación VNI</h2>
+
+            <div class="protocol-steps">
+                <h3>Fase de inicio</h3>
+
+                <div class="step">
+                    <h4>1. Preparación</h4>
+                    <p>• Confirmar indicación y excluir contraindicaciones<br>
+                    • Elegir respirador (BIPAP modo ST recomendado)<br>
+                    • Informar y tranquilizar al paciente</p>
+                </div>
+
+                <div class="step">
+                    <h4>2. Posicionamiento</h4>
+                    <p>• Paciente semiincorporado a 45°<br>
+                    • Monitorizar FR y SpO₂<br>
+                    • Seleccionar mascarilla oronasal inicialmente</p>
+                </div>
+
+                <div class="step">
+                    <h4>3. Parámetros iniciales</h4>
+                    <p><strong>BIPAP:</strong> IPAP 8 cmH₂O, EPAP 4 cmH₂O, 4-8 respiraciones mandatorias<br>
+                    <strong>CPAP:</strong> Comenzar con 5 cmH₂O<br>
+                    <strong>FiO₂:</strong> 0,4 o necesaria para SpO₂ > 90%</p>
+                </div>
+            </div>
+
+            <div class="protocol-steps">
+                <h3>Programa básico - ajustes</h3>
+
+                <div class="parameters-grid">
+                    <div class="parameter-card">
+                        <h4>IPAP</h4>
+                        <div class="parameter-value">↑ 2 en 2 cmH₂O</div>
+                        <p>Hasta Vc ≥ 7 ml/kg, FR < 25, menos disnea</p>
+                    </div>
+
+                    <div class="parameter-card">
+                        <h4>EPAP</h4>
+                        <div class="parameter-value">↑ 2 en 2 cmH₂O</div>
+                        <p>Evitar inspiraciones fallidas, mejorar SpO₂</p>
+                    </div>
+
+                    <div class="parameter-card">
+                        <h4>FiO₂</h4>
+                        <div class="parameter-value">Ajustar</div>
+                        <p>Para SpO₂ > 90%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h4>Ajustes Inmediatos según problema</h4>
+                <ul>
+                    <li><strong>Hipoxemia:</strong> ↑ EPAP (máx 12 cmH₂O), ↑ FiO₂</li>
+                    <li><strong>Hipercapnia:</strong> ↑ IPAP hasta pH normal (máx 20 cmH₂O)</li>
+                    <li><strong>Desadaptación:</strong> ajustar presiones según tipo de esfuerzo</li>
+                    <li><strong>Sin respuesta 2-4h:</strong> considerar ventilación invasiva</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" id="monitoreo">
+            <h2>Monitorización del paciente</h2>
+
+            <div class="highlight-box">
+                <h3>Principio fundamental</h3>
+                <p>La buena observación clínica no se sustituye por tecnología</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Parámetros clínicos</h4>
+                    <ul>
+                        <li>Frecuencia respiratoria y cardíaca</li>
+                        <li>Presión arterial</li>
+                        <li>Nivel de conciencia</li>
+                        <li>Uso musculatura accesoria</li>
+                        <li>Fugas y asincronías</li>
+                        <li>Visualización curvas flujo-presión</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h4>Parámetros gasométricos</h4>
+                    <ul>
+                        <li>SpO₂ continua imprescindible</li>
+                        <li>Control periódico pH y gases</li>
+                        <li>Gasometría a 1-2 h del inicio</li>
+                        <li>Controles según evolución</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="criteria-list">
+                <h4>Monitorización mínima indispensable</h4>
+                <ul>
+                    <li>Observación clínica regular o continua</li>
+                    <li>Pulsioximetría continua con alarma</li>
+                    <li>Frecuencia cardiaca y respiratoria</li>
+                    <li>Control gasométrico fácilmente disponible</li>
+                </ul>
+            </div>
+
+            <h3>Sedación y VMNI</h3>
+            <div class="info-card">
+                <h4>Fármacos utilizados</h4>
+                <p><strong>Más frecuentes:</strong> benzodiacepinas (33%), Opiáceos (29%)</p>
+                <p><strong>Otros:</strong> dexmedetomidina (mejor tolerancia), Propofol, Midazolam</p>
+                <p><strong>Precaución:</strong> riesgo depresión respiratoria</p>
+            </div>
+
+            <h3>Lugar de aplicación</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>UCI</h4>
+                    <p>Pacientes graves, alta monitorización, acceso rápido a intubación</p>
+                </div>
+                <div class="info-card">
+                    <h4>Planta hospitalización</h4>
+                    <p>Pacientes menos graves, personal adiestrado, monitorización adecuada</p>
+                </div>
+                <div class="info-card">
+                    <h4>UCRI</h4>
+                    <p>Unidades específicas, personal especializado, equipamiento adecuado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="cronicos">
+            <h2>VNI en pacientes crónicos</h2>
+
+            <div class="highlight-box">
+                <h3>Ventilación mecánica domiciliaria (VMD)</h3>
+                <p>Soporte ventilatorio invasivo o no invasivo en domicilio para fracaso respiratorio crónico</p>
+            </div>
+
+            <h3>Objetivos de la VMD</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Objetivo principal</h4>
+                    <ul>
+                        <li>Aumentar duración y calidad del sueño</li>
+                        <li>Mejorar calidad de vida</li>
+                        <li>Mejorar estado funcional</li>
+                        <li>Aumentar supervivencia</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h4>Ventajas VNI vs Traqueostomía</h4>
+                    <ul>
+                        <li>Más fácil de administrar</li>
+                        <li>Sin cuidadores especializados</li>
+                        <li>Sin complicaciones traqueostomía</li>
+                        <li>Mayor comodidad</li>
+                        <li>Menores costes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Mecanismo de Acción en IRC</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Descanso muscular</h4>
+                    <p>Músculos respiratorios fatigados crónicamente mejoran su función</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Mejora compliance</h4>
+                    <p>Desaparecen microatelectasias, aumenta distensibilidad pulmonar</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Regulación centro respiratorio</h4>
+                    <p>Umbral más bajo de PaCO₂ por corrección hipoventilación crónica</p>
+                </div>
+            </div>
+
+            <h3>Criterios de indicación VMD</h3>
+            <div class="criteria-list">
+                <h4>Indicación fundamental: fracaso de ventilación</h4>
+                <ul>
+                    <li>Hipercapnia en sangre arterial</li>
+                    <li>Patología restrictiva</li>
+                    <li>Insuficiencia respiratoria progresiva</li>
+                </ul>
+            </div>
+
+            <div class="parameters-grid">
+                <div class="parameter-card">
+                    <h4>Criterios fisiológicos</h4>
+                    <div class="parameter-value">PaCO₂ > 55 mmHg</div>
+                    <p>O PaCO₂ 50-54 + desaturaciones nocturnas</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h4>Síntomas</h4>
+                    <div class="parameter-value">Hipoventilación nocturna</div>
+                    <p>Cefalea matutina, despertares, somnolencia diurna</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="domiciliaria">
+            <h2>Tipos de ventiladores para VMD</h2>
+
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h3>Pacientes dependientes</h3>
+                    <ul>
+                        <li><strong>Definición:</strong> desconexión >24h = efectos deletéreos</li>
+                        <li><strong>Ejemplos:</strong> neuromusculares avanzados, UCI no desconectables</li>
+                        <li><strong>Ventilador:</strong> volumétricos con alarmas y batería</li>
+                        <li><strong>Vía:</strong> frecuentemente traqueostomía</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h3>Pacientes no dependientes</h3>
+                    <ul>
+                        <li><strong>Definición:</strong> VNI no es soporte vital</li>
+                        <li><strong>Uso:</strong> Durante horas de sueño</li>
+                        <li><strong>Ventilador:</strong> Presión de soporte</li>
+                        <li><strong>Vía:</strong> Mascarillas nasales habitualmente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Ventiladores volumétricos</h3>
+            <div class="info-card">
+                <h4>Características</h4>
+                <p><strong>Función:</strong> volumen prefijado en tubuladura</p>
+                <p><strong>Seguridad:</strong> alarmas alta/baja presión, batería interna</p>
+                <p><strong>Inconvenientes:</strong> no compensan fugas, más pesados, mayor coste</p>
+            </div>
+
+            <div class="parameters-grid">
+                <div class="parameter-card">
+                    <h4>Modo ventilatorio</h4>
+                    <div class="parameter-value">A/C</div>
+                    <p>Asistido/Controlado con FR mínima 15-20 rpm</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h4>Volumen corriente</h4>
+                    <div class="parameter-value">10-20 ml/kg</div>
+                    <p>Comenzar bajo para mejor adaptación</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h4>Trigger</h4>
+                    <div class="parameter-value">0.5-1 cmH₂O</div>
+                    <p>Mínimo sin autociclado</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h4>Relación I:E</h4>
+                    <div class="parameter-value">1:1 a 1:2</div>
+                    <p>Obstructivos: prolongar espiración (1:3)</p>
+                </div>
+            </div>
+
+            <h3>Ventiladores de presión</h3>
+            <div class="info-card">
+                <h4>Aplicación principal</h4>
+                <p>Pacientes no dependientes, uso nocturno, compensan fugas, más económicos</p>
+            </div>
+        </div>
+
+        <div class="slide" id="patologias">
+            <h2>VMNI en patologías específicas</h2>
+
+            <h3>EPOC estable</h3>
+            <div class="info-card">
+                <h4>Indicaciones específicas</h4>
+                <p><strong>Criterios:</strong> pacientes sintomáticos con:</p>
+                <ul>
+                    <li>pCO₂ ≥ 55 mmHg</li>
+                    <li>pCO₂ 50-54 + desaturaciones nocturnas (SatO₂ ≤ 88% >5 min)</li>
+                    <li>pCO₂ 50-54 + ≥2 hospitalizaciones/año por exacerbación</li>
+                </ul>
+                <p><strong>Parámetros:</strong> IPAP 8-12 cmH₂O, EPAP 4-5 cmH₂O</p>
+            </div>
+
+            <h3>Enfermedades restrictivas caja torácica</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Cifoescoliosis</h4>
+                    <p><strong>Mecanismo:</strong> defecto ventilatorio restrictivo</p>
+                    <p><strong>Hipercapnia:</strong> inicialmente en sueño REM</p>
+                    <p><strong>Parámetros:</strong> IPAP 20-25 cmH₂O, EPAP 2-4 cmH₂O</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Indicaciones de inicio</h4>
+                    <ul>
+                        <li>PaCO₂ ≥ 45 mmHg</li>
+                        <li>Desaturación nocturna: SatO₂ < 90% >5 min</li>
+                        <li>Síntomas: hipersomnia, fatiga, cefalea matutina</li>
+                        <li>Signos cor pulmonale</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Enfermedades neuromusculares</h3>
+            <div class="disease-categories">
+                <div class="disease-card">
+                    <h4>Rápidamente progresivas</h4>
+                    <ul>
+                        <li>ELA</li>
+                        <li>Duchenne</li>
+                    </ul>
+                </div>
+
+                <div class="disease-card">
+                    <h4>Lentamente progresivas</h4>
+                    <ul>
+                        <li>Poliomielitis</li>
+                        <li>Steinert</li>
+                        <li>Facio-escápulo-humeral</li>
+                    </ul>
+                </div>
+
+                <div class="disease-card">
+                    <h4>Progresión variable</h4>
+                    <ul>
+                        <li>Distrofias cintura</li>
+                        <li>Miopatías</li>
+                        <li>Miastenia gravis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Esclerosis Lateral Amiotrófica (ELA)</h3>
+            <div class="info-card">
+                <h4>Consideraciones especiales</h4>
+                <p><strong>Pronóstico:</strong> 80% fallece por IRC en 5 años</p>
+                <p><strong>Afectación bulbar:</strong> 30% inicio, mal pronóstico</p>
+                <p><strong>Indicación VNI:</strong> precoz para adaptación progresiva</p>
+                <p><strong>Criterios:</strong> pCO₂ > 45 mmHg, SatO₂ ≤ 88% >5 min, PIM < 60 cmH₂O</p>
+            </div>
+
+            <h3>Síndrome Obesidad-Hipoventilación (SOH)</h3>
+            <div class="info-card">
+                <h4>Definición y tratamiento</h4>
+                <p><strong>Definición:</strong> IMC ≥ 30 kg/m² + PaCO₂ ≥ 45 mmHg + alteraciones sueño</p>
+                <p><strong>Tratamiento:</strong> CPAP si SAHS leve, BIPAP si persiste hipercapnia</p>
+                <p><strong>Parámetros:</strong> IPAP 18-20 cmH₂O, EPAP 8-10 cmH₂O sobre CPAP</p>
+            </div>
+        </div>
+
+        <div class="slide" id="complicaciones">
+            <h2>Complicaciones y manejo del fracaso</h2>
+
+            <h3>Efectos adversos frecuentes</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Efecto adverso</th>
+                            <th>Frecuencia</th>
+                            <th>Solución</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Incomodidad</td>
+                            <td>30-50%</td>
+                            <td>Reajustar mascarilla, probar otros modelos</td>
+                        </tr>
+                        <tr>
+                            <td>Fugas</td>
+                            <td>80-100%</td>
+                            <td>Ajuste adecuado, mascarilla oronasal</td>
+                        </tr>
+                        <tr>
+                            <td>Eritema local</td>
+                            <td>20-35%</td>
+                            <td>Aflojar arnés, apósitos protectores</td>
+                        </tr>
+                        <tr>
+                            <td>Congestión nasal</td>
+                            <td>20-50%</td>
+                            <td>Suero salino, esteroides tópicos</td>
+                        </tr>
+                        <tr>
+                            <td>Sequedad mucosas</td>
+                            <td>10-20%</td>
+                            <td>Humidificador, evitar IPAP > 20</td>
+                        </tr>
+                        <tr>
+                            <td>Distensión abdominal</td>
+                            <td>5-10%</td>
+                            <td>Evitar IPAP elevada, sonda nasogástrica</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Complicaciones mayores (< 5%)</h3>
+            <div class="content-grid">
+                <div class="info-card contraindications">
+                    <h4>Broncoaspiración</h4>
+                    <p>Selección adecuada, enseñar liberación mascarilla si vómito</p>
+                </div>
+                <div class="info-card contraindications">
+                    <h4>Hipotensión</h4>
+                    <p>Reducir presiones aplicadas</p>
+                </div>
+                <div class="info-card contraindications">
+                    <h4>Neumotórax</h4>
+                    <p>Evitar presiones elevadas, drenaje torácico</p>
+                </div>
+            </div>
+
+            <h3>Predictores de fracaso VMNI</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Momento</th>
+                            <th>Factores Predictores</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Basales</strong></td>
+                            <td>SDRA, alteración mental, shock, secreciones abundantes, hipoxemia severa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Al iniciar VNI</strong></td>
+                            <td>Fugas excesivas, asincronía, mala tolerancia, deterioro neurológico</td>
+                        </tr>
+                        <tr>
+                            <td><strong>A los 60 minutos</strong></td>
+                            <td>FR elevada persistente, no mejoría pH/oxigenación, no reducción PCO₂, fatiga muscular</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Cuándo Retirar la VMNI</h3>
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h3>Retirada por éxito</h3>
+                    <ul>
+                        <li>Evolución favorable</li>
+                        <li>Recuperación insuficiencia respiratoria</li>
+                        <li>Destete progresivo si uso prolongado</li>
+                        <li>Valorar VNI domiciliaria en restrictivas</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h3>Retirada por fracaso</h3>
+                    <ul>
+                        <li>Sin respuesta clínica/gasométrica 2-4h</li>
+                        <li>Tras realizar todos los ajustes</li>
+                        <li>Iniciar ventilación invasiva en UCI</li>
+                        <li>No demorar decisión</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Monitorización VMD</h3>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h4>Frecuencia seguimiento</h4>
+                    <p><strong>Dependientes:</strong> estrecha (semanal-diaria)</p>
+                    <p><strong>No dependientes:</strong> semestral a mensual</p>
+                    <p><strong>Factores:</strong> estabilidad y dependencia del respirador</p>
+                </div>
+
+                <div class="info-card">
+                    <h4>Parámetros control</h4>
+                    <ul>
+                        <li>Cumplimiento VNI (contador horario)</li>
+                        <li>Respuesta subjetiva (síntomas)</li>
+                        <li>Función pulmonar y gases arteriales</li>
+                        <li>Control fugas y efectos adversos</li>
+                        <li>Mantenimiento equipamiento</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Mensaje final</h3>
+                <p><strong>La VMNI es una herramienta poderosa que requiere:</strong></p>
+                <ul style="text-align: left; margin-top: 15px;">
+                    <li>Selección adecuada de pacientes</li>
+                    <li>Aplicación técnica correcta</li>
+                    <li>Monitorización estrecha</li>
+                    <li>Decisión oportuna de retirada</li>
+                    <li>Seguimiento a largo plazo en crónicos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Presentación basada en: "Ventilación mecánica no invasiva (VNI) en pacientes agudos y crónicos"<br>
+            D. del Castillo Otero, A. Cortés Caballero, A. García Cuesta, N.P. de la Cruz Castro</p>
+            <p>Puedes consultar el documento completo <a href="https://www.neumosur.net/files/publicaciones/ebook/14-VNI-Neumologia-3_ed.pdf" target="_blank" rel="noopener noreferrer">aquí</a>.</p>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <script>
+        // Store slide IDs in an array
+        const slideIds = [
+            'intro', 'agudos', 'indicaciones', 'tecnica', 'protocolo',
+            'monitoreo', 'cronicos', 'domiciliaria', 'patologias', 'complicaciones'
+        ];
+
+        // Function to show a specific slide
+        function showSlide(slideIdToShow, sourceEvent = null) {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected slide
+            document.getElementById(slideIdToShow).classList.add('active');
+
+            // Add active class to the corresponding navigation button
+            const targetButton = document.querySelector(`.nav-btn[data-slide-id="${slideIdToShow}"]`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+
+            // Scroll to top only if it's a direct user interaction (click, key, touch)
+            // This prevents unwanted scrolling if progress update triggers it
+            if (sourceEvent) {
+                 window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+
+            updateProgress(); // Update progress bar after slide change
+        }
+
+        // Event listener for navigation buttons
+        document.querySelector('.navigation').addEventListener('click', function(event) {
+            const button = event.target.closest('.nav-btn');
+            if (button) {
+                const slideId = button.dataset.slideId;
+                showSlide(slideId, event); // Pass the event object
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const currentSlide = document.querySelector('.slide.active');
+            if (!currentSlide) return; // Exit if no active slide found
+
+            const currentIndex = slideIds.indexOf(currentSlide.id);
+
+            if (event.key === 'ArrowRight' && currentIndex < slideIds.length - 1) {
+                showSlide(slideIds[currentIndex + 1], event);
+            } else if (event.key === 'ArrowLeft' && currentIndex > 0) {
+                showSlide(slideIds[currentIndex - 1], event);
+            }
+        });
+
+        // Touch gestures for mobile
+        let startX = 0;
+        let endX = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            endX = event.changedTouches[0].clientX;
+            handleSwipe(event); // Pass the event object
+        });
+
+        function handleSwipe(sourceEvent) {
+            const threshold = 50;
+            const currentSlide = document.querySelector('.slide.active');
+            if (!currentSlide) return;
+
+            const currentIndex = slideIds.indexOf(currentSlide.id);
+
+            if (startX - endX > threshold && currentIndex < slideIds.length - 1) {
+                // Swipe left - next slide
+                showSlide(slideIds[currentIndex + 1], sourceEvent);
+            } else if (endX - startX > threshold && currentIndex > 0) {
+                // Swipe right - previous slide
+                showSlide(slideIds[currentIndex - 1], sourceEvent);
+            }
+        }
+
+        // Progress indicator
+        function updateProgress() {
+            const currentSlide = document.querySelector('.slide.active');
+            if (!currentSlide) return;
+
+            const currentIndex = slideIds.indexOf(currentSlide.id);
+            const progress = ((currentIndex + 1) / slideIds.length) * 100;
+
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        }
+
+        // Initialize on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial call to show the 'intro' slide and update progress
+            showSlide('intro');
+        });
+    </script>
+</body>
+</html>
